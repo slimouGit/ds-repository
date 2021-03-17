@@ -1,0 +1,9 @@
+Example dataset by OpenML (https://www.openml.org/d/15)
+
+the use is for study purposes only
+
+Author: Dr. William H. Wolberg, University of Wisconsin
+Source: [UCI](https://archive.ics.uci.edu/ml/datasets/breast+cancer+wisconsin+(original)), [University of Wisconsin](http://pages.cs.wisc.edu/~olvi/uwmp/cancer.html) - 1992-07-15
+Please cite: Dr. William H. Wolberg, University of Wisconsin Hospitals, Madison + (See below)
+
+Breast Cancer Wisconsin (Original) Data Set. Features are computed from a digitized image of a fine needle aspirate (FNA) of a breast mass. They describe characteristics of the cell nuclei present in the image. The target feature records the prognosis (malignant or benign). [Original data available here](ftp://ftp.cs.wisc.edu/math-prog/cpo-dataset/machine-learn/cancer/)
