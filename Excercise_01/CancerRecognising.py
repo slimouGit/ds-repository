@@ -1,10 +1,11 @@
 import pandas as pd
 
 df = pd.read_csv("data/openml_phpJNxH0q.csv")
-df.head()
+print(df.head(10))
 
 from sklearn.model_selection import train_test_split
 
+#DEFINE VARIABLES
 #X = df[["Clump_Thickness","Cell_Size_Uniformity","Cell_Shape_Uniformity","Marginal_Adhesion","Single_Epi_Cell_Size","Bare_Nuclei","Bland_Chromatin","Normal_Nucleoli","Mitoses"]].values
 X = df.drop("Class", axis=1).values
 y = df["Class"].values
@@ -21,12 +22,14 @@ from sklearn.linear_model import LogisticRegression
 model = LogisticRegression()
 model.fit(X_train, y_train)
 
-print(model.score(X_test,y_test))
+print("Score:", model.score(X_test,y_test))
 
-predict = model.predict([[8.0,10.0,10.0,8.0,7.0,10.0,9.0,7.0,1.0]])
-print("Predict ", predict)
+#-------------------------------------------------------
 
-predict = model.predict([[0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0]])
-print("Predict ", predict)
+y_pred = model.predict(X_test)
+from sklearn.metrics import classification_report
+print(classification_report(y_test, y_pred))
+
+#-------------------------------------------------------
 
 
