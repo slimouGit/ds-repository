@@ -1,70 +1,85 @@
 class TicTacToe():
-    playground = [["_", "_", "_"],
-                  ["_", "_", "_"],
-                  ["_", "_", "_"]]
+    def __init__(self, playground:list):
+        if(playground):
+            getInput(playground)
+        else:
+            print("no playground defined")
 
-    def __init__(self, playground):
-        self.playground = playground
+#1. get user input
+def getInput(playground:list):
+    sign:str = input("Dein Zeichen:\n")
+    row:int = int(input("Welche Reihe bespielen:\n"))
+    col:int = int(input("Welche Zeile bespielen:\n"))
+    handleInput(playground, sign, row, col)
 
-#function checks game state at every move
-def verifyScore(sign:str):
-    #horizontal check
-    if((TicTacToe.playground[0][0] == sign) and (TicTacToe.playground[0][1] == sign) and (TicTacToe.playground[0][2] == sign)):
-        return 1
-    elif((TicTacToe.playground[1][0] == sign) and (TicTacToe.playground[1][1] == sign) and (TicTacToe.playground[1][2] == sign)):
-        return 1
-    elif ((TicTacToe.playground[2][0] == sign) and (TicTacToe.playground[2][1] == sign) and (TicTacToe.playground[2][2] == sign)):
-        return 1
-    #vertical check
-    elif ((TicTacToe.playground[0][0] == sign) and (TicTacToe.playground[1][0] == sign) and (TicTacToe.playground[2][0] == sign)):
-        return 1
-    elif ((TicTacToe.playground[0][1] == sign) and (TicTacToe.playground[1][1] == sign) and (TicTacToe.playground[2][1] == sign)):
-        return 1
-    elif ((TicTacToe.playground[0][2] == sign) and (TicTacToe.playground[1][2] == sign) and (TicTacToe.playground[2][2] == sign)):
-        return 1
-    #diagonal check
-    elif ((TicTacToe.playground[0][0] == sign) and (TicTacToe.playground[1][1] == sign) and (TicTacToe.playground[2][2] == sign)):
-        return 1
-    elif ((TicTacToe.playground[2][0] == sign) and (TicTacToe.playground[1][1] == sign) and (TicTacToe.playground[0][2] == sign)):
-        return 1
+#2. handle userinput
+def handleInput(playground:list, sign:str, row:int, col:int):
+    # ckeck input is validate move
+    if (verifyMove(playground, row, col)):
+        play(playground, sign, row, col)
     else:
-        return 0
+        print("Ungueltiger Spielzug")
+        getInput(playground)
 
-#function checks move is at playground and in empty field
-def verifyMove(row, col):
+#3. function checks move is at playground and in empty field
+def verifyMove(playground:list,row:int, col:int):
     #move is in range of playground
     if(row>2 or col>2):
         return 0
     #move is on empty field
-    elif(TicTacToe.playground[row][col]=="_"):
+    elif(playground[row][col]=="_"):
         return 1
     else:
         return 0
 
-def play(sign:str, row:int, col:int):
+#4. play users move
+def play(playground:list, sign:str, row:int, col:int):
     #set sign on selected field
-    TicTacToe.playground[row][col] = sign
+    playground[row][col] = sign
     #show current game state
-    printPlayground(TicTacToe.playground)
+    printPlayground(playground)
     #check game has to continue or is won by player
-    if(verifyScore(sign)):
+    if(verifyScore(playground, sign)):
+        print("\n************************")
         print(sign, "hat gewonnen")
+        print("************************")
     else:
-        getInput()
+        getInput(playground)
 
-def getInput():
-    #user inputs
-    sign = input("Dein Zeichen:\n")
-    row = int(input("Welche Reihe bespielen:\n"))
-    col = int(input("Welche Zeile bespielen:\n"))
-    #ckeck input is validate move
-    if(verifyMove(row, col)):
-        play(sign, row, col)
-    else:
-        print("Ungueltiger Spielzug")
-        getInput()
-
-def printPlayground(playground):
+#5. print each row in playground
+def printPlayground(playground:list):
     print("",playground[0],"\n",playground[1],"\n",playground[2])
 
-getInput()
+#6. function checks game state at every move
+def verifyScore(playground:list, sign:str):
+    #horizontal check
+    if((playground[0][0] == sign) and (playground[0][1] == sign) and (playground[0][2] == sign)):
+        return 1
+    elif((playground[1][0] == sign) and (playground[1][1] == sign) and (playground[1][2] == sign)):
+        return 1
+    elif ((playground[2][0] == sign) and (playground[2][1] == sign) and (playground[2][2] == sign)):
+        return 1
+    #vertical check
+    elif ((playground[0][0] == sign) and (playground[1][0] == sign) and (playground[2][0] == sign)):
+        return 1
+    elif ((playground[0][1] == sign) and (playground[1][1] == sign) and (playground[2][1] == sign)):
+        return 1
+    elif ((playground[0][2] == sign) and (playground[1][2] == sign) and (playground[2][2] == sign)):
+        return 1
+    #diagonal check
+    elif ((playground[0][0] == sign) and (playground[1][1] == sign) and (playground[2][2] == sign)):
+        return 1
+    elif ((playground[2][0] == sign) and (playground[1][1] == sign) and (playground[0][2] == sign)):
+        return 1
+    else:
+        return 0
+
+#---------------------------------------------------------------------------------------------------
+
+#INITIALIZE PLAYGROUND AND TICTACTOE OBJECT
+
+#multidimensional array as playground
+playground:list = [["_", "_", "_"], ["_", "_", "_"], ["_", "_", "_"]]
+
+#start game with new TicTacToe object
+TicTacToe(playground)
