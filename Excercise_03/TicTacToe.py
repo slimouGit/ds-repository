@@ -6,6 +6,7 @@ class TicTacToe():
     def __init__(self, playground):
         self.playground = playground
 
+#function checks game state at every move
 def verifyScore(sign:str):
     #horizontal check
     if((TicTacToe.playground[0][0] == sign) and (TicTacToe.playground[0][1] == sign) and (TicTacToe.playground[0][2] == sign)):
@@ -29,26 +30,34 @@ def verifyScore(sign:str):
     else:
         return 0
 
+#function checks move is at playground and in empty field
 def verifyMove(row, col):
+    #move is in range of playground
     if(row>2 or col>2):
         return 0
+    #move is on empty field
     elif(TicTacToe.playground[row][col]=="_"):
         return 1
     else:
         return 0
 
 def play(sign:str, row:int, col:int):
+    #set sign on selected field
     TicTacToe.playground[row][col] = sign
+    #show current game state
     printPlayground(TicTacToe.playground)
+    #check game has to continue or is won by player
     if(verifyScore(sign)):
         print(sign, "hat gewonnen")
     else:
         getInput()
 
 def getInput():
+    #user inputs
     sign = input("Dein Zeichen:\n")
     row = int(input("Welche Reihe bespielen:\n"))
     col = int(input("Welche Zeile bespielen:\n"))
+    #ckeck input is validate move
     if(verifyMove(row, col)):
         play(sign, row, col)
     else:
