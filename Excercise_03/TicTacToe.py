@@ -1,13 +1,15 @@
 class TicTacToe():
     def __init__(self, playground:list):
         if(playground):
+            #show initial playground
+            printPlayground(playground)
             getInput(playground)
         else:
             print("no playground defined")
 
 #1. get user input
 def getInput(playground:list):
-    sign:str = input("Dein Zeichen:\n")
+    sign:str = input("Dein Zeichen:\n") #Sign of user
     row:int = int(input("Welche Reihe bespielen:\n"))
     col:int = int(input("Welche Zeile bespielen:\n"))
     handleInput(playground, sign, row, col)
@@ -24,7 +26,7 @@ def handleInput(playground:list, sign:str, row:int, col:int):
 #3. function checks move is at playground and in empty field
 def verifyMove(playground:list,row:int, col:int):
     #move is in range of playground
-    if(row>2 or col>2):
+    if(row>(len(playground)-1) or col>(len(playground)-1)):
         return 0
     #move is on empty field
     elif(playground[row][col]=="_"):
@@ -48,26 +50,21 @@ def play(playground:list, sign:str, row:int, col:int):
 
 #5. print each row in playground
 def printPlayground(playground:list):
-    print("",playground[0],"\n",playground[1],"\n",playground[2])
+    for i in range(len(playground)):
+        print(playground[i])
 
 #6. function checks game state at every move
 def verifyScore(playground:list, sign:str):
     #horizontal check
-    if((playground[0][0] == sign) and (playground[0][1] == sign) and (playground[0][2] == sign)):
-        return 1
-    elif((playground[1][0] == sign) and (playground[1][1] == sign) and (playground[1][2] == sign)):
-        return 1
-    elif ((playground[2][0] == sign) and (playground[2][1] == sign) and (playground[2][2] == sign)):
-        return 1
+    for i in range(len(playground)):
+        if((playground[i][0] == sign) and (playground[i][1] == sign) and (playground[i][2] == sign)):
+            return 1
     #vertical check
-    elif ((playground[0][0] == sign) and (playground[1][0] == sign) and (playground[2][0] == sign)):
-        return 1
-    elif ((playground[0][1] == sign) and (playground[1][1] == sign) and (playground[2][1] == sign)):
-        return 1
-    elif ((playground[0][2] == sign) and (playground[1][2] == sign) and (playground[2][2] == sign)):
-        return 1
+    for i in range(len(playground)):
+        if ((playground[0][i] == sign) and (playground[1][i] == sign) and (playground[2][i] == sign)):
+            return 1
     #diagonal check
-    elif ((playground[0][0] == sign) and (playground[1][1] == sign) and (playground[2][2] == sign)):
+    if ((playground[0][0] == sign) and (playground[1][1] == sign) and (playground[2][2] == sign)):
         return 1
     elif ((playground[2][0] == sign) and (playground[1][1] == sign) and (playground[0][2] == sign)):
         return 1
