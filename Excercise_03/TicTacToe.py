@@ -1,3 +1,5 @@
+__author__ = "Salim Oussayfi"
+
 class TicTacToe():
     def __init__(self, playground:list):
         if(playground):
