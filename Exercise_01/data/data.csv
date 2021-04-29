@@ -1,0 +1,12 @@
+Clump_Thickness,Cell_Size_Uniformity,Class
+
+10.0,10.0,malignant
+8.0,10.0,malignant
+10.0,8.0,malignant
+6.0,8.0,malignant
+8.0,6.0,malignant
+0.0,0.0,benign
+1.0,0.0,benign
+0.0,1.0,benign
+2.0,1.0,benign
+1.0,2.0,benign
