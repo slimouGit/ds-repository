@@ -1,8 +1,7 @@
 # dataset source: http://www.math.umd.edu/~slud/s430.old/Data/ESOPH.dat
 
-#Load required libraries
+#Libraries
 library(tidyverse)
-
 library(ggplot2)
 library(ggcorrplot)
 
@@ -21,10 +20,9 @@ print("-----------------------------------------------------")
 print("summary(esoph)")
 summary(esoph)
 print("-----------------------------------------------------")
-#
-print("str(esoph)")
-str(esoph)
 
+
+#print each age-group
 print("-----------------------------------------------------")
 print("mask <- esoph$agegp ==  25-34")
 mask <- esoph$agegp == "25-34"
@@ -55,11 +53,51 @@ print("mask <- esoph$agegp ==  75+")
 mask <- esoph$agegp == "75+"
 esoph[ mask , ]
 
+
+#averages of cases and controlls in each group
+print("25-34")
+print("average cases in group 25-34")
+mean (subset(esoph$ncases, esoph$agegp == "25-34"))
+print("average controls in group 25-34")
+mean (subset(esoph$ncontrols, esoph$agegp == "25-34"))
 print("-----------------------------------------------------")
-print("mask <- esoph$ncases > 5")
-mask <- esoph$ncases > 5
-esoph[ mask , ]
+
+print("35-44")
+print("average cases in group 35-44")
+mean (subset(esoph$ncases, esoph$agegp == "35-44"))
+print("average controls in group 35-44")
+mean (subset(esoph$ncontrols, esoph$agegp == "35-44"))
 print("-----------------------------------------------------")
+
+print("45-54")
+print("average cases in group 45-54")
+mean (subset(esoph$ncases, esoph$agegp == "45-54"))
+print("average controls in group 45-54")
+mean (subset(esoph$ncontrols, esoph$agegp == "45-54"))
+print("-----------------------------------------------------")
+
+print("55-64")
+print("average cases in group 55-64")
+mean (subset(esoph$ncases, esoph$agegp == "55-64"))
+print("average controls in group 55-64")
+mean (subset(esoph$ncontrols, esoph$agegp == "55-64"))
+print("-----------------------------------------------------")
+
+print("65-74")
+print("average cases in group 65-74")
+mean (subset(esoph$ncases, esoph$agegp == "65-74"))
+print("average controls in group 65-74")
+mean (subset(esoph$ncontrols, esoph$agegp == "65-74"))
+print("-----------------------------------------------------")
+
+print("75+")
+print("average cases in group 75+")
+mean (subset(esoph$ncases, esoph$agegp == "75+"))
+print("average controls in group 75+")
+mean (subset(esoph$ncontrols, esoph$agegp == "75+"))
+print("-----------------------------------------------------")
+
+
 
 #plott some stats
 hist(esoph$ncases, xlab="Number of cases")
@@ -116,3 +154,7 @@ ggplot(esoph, aes(factor(esoph$alcgp), esoph$ncases*100/esoph$ncontrols, fill = 
   scale_fill_brewer(palette ="Set1")+
   labs(x= 'Alcohol Consumption Groups', y= 'Percentage Of Cancer Cases')+
   guides(fill=guide_legend(title="Tobacco Consumption Groups"))
+
+
+
+
